@@ -8,7 +8,6 @@ CREATE TABLE employee (
     super_id        INT,
     branch_id       INT
 );
-DESCRIBE employee;
 CREATE TABLE branch (
     branch_id       INT PRIMARY KEY AUTO_INCREMENT,
     branch_name     VARCHAR(40),
@@ -16,7 +15,6 @@ CREATE TABLE branch (
     mgr_start_date  DATE,
     FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE SET NULL
 );
-DESCRIBE branch;
 
 ALTER TABLE employee
 ADD FOREIGN KEY (branch_id) 
@@ -35,7 +33,6 @@ CREATE TABLE client (
     branch_id       INT,
     FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL
 );
-DESCRIBE client;
 
 CREATE TABLE works_with (
     emp_id          INT,
@@ -45,7 +42,6 @@ CREATE TABLE works_with (
     FOREIGN KEY (emp_id) REFERENCES employee(emp_id) ON DELETE CASCADE,
     FOREIGN KEY (client_id) REFERENCES client(client_id) ON DELETE CASCADE
 );
-DESCRIBE works_with;
 
 CREATE TABLE branch_supplier (
     branch_id       INT,
@@ -54,4 +50,3 @@ CREATE TABLE branch_supplier (
     PRIMARY KEY(branch_id, supplier_name),
     FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE
 );
-DESCRIBE branch_supplier;
